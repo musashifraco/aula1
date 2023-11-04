@@ -13,12 +13,12 @@ public class CargoDTO {
 
     private String cargoName;
 
-    private List<Person> persons;
+    private List<String> persons;
 
     public CargoDTO(Cargo entity) {
         id = entity.getId();
         cargoName = entity.getCargoName();
-        persons = entity.getPersons();
+        persons = entity.getPersons().stream().map(Person::getFirstName).toList();
     }
 
     public Long getId() {
@@ -29,7 +29,7 @@ public class CargoDTO {
         return cargoName;
     }
 
-    public List<Person> getPersons() {
+    public List<String> getPersons() {
         return persons;
     }
 

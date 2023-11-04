@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,13 +24,12 @@ public class Cargo implements Serializable {
     @Column(name = "cargo_name", nullable = false, length = 80)
     private String cargoName;
 
-    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "person_cargo",
             joinColumns = @JoinColumn(name = "cargo_id"),
             inverseJoinColumns = @JoinColumn(name = "person_id"))
-    private List<Person> persons;
+    private List<Person> persons = new ArrayList<>();
 
     public Cargo() {}
 

@@ -1,9 +1,11 @@
 package com.example.aula.models;
+import com.example.aula.dto.PersonDTO;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,9 +28,8 @@ public class Person implements Serializable {
     @Column(name = "person_bio", nullable = false, length = 80)
     private String personBio;
 
-    @JsonManagedReference
     @ManyToMany(mappedBy = "persons", fetch = FetchType.EAGER)
-    private List<Cargo> cargos;
+    private List<Cargo> cargos = new ArrayList<>();
 
 
     @Column( nullable = false, length = 100)
@@ -38,6 +39,15 @@ public class Person implements Serializable {
     private String gender;
 
     public Person() {}
+
+    public Person(PersonDTO personDTO) {
+        this.id = personDTO.getId();
+        this.firstName = personDTO.getFirstName();
+        this.lastName = personDTO.getLastName();
+        this.personBio = personDTO.getPersonBio();
+        this.address = personDTO.getAddress();
+        this.gender = personDTO.getGender();
+    }
     public Person(List<Cargo> cargos) {
         this.cargos = cargos;
     }
@@ -80,7 +90,7 @@ public class Person implements Serializable {
     }
 
     public void setCargos(List<Cargo> cargos) {
-        this.cargos = cargos;
+        this.cargos.addAll(cargos);
     }
 
     public String getAddress() {

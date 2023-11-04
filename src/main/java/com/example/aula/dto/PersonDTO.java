@@ -15,6 +15,8 @@ public class PersonDTO {
         private String address;
         private String gender;
 
+        public PersonDTO() {}
+
         public PersonDTO(Person entity) {
             id = entity.getId();
             firstName = entity.getFirstName();
