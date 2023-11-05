@@ -20,4 +20,25 @@ public class CargoService {
         List<Cargo> resultsList = cargoRepository.findAll();
         return resultsList.stream().map(CargoDTO::new).toList();
     }
+
+    public CargoDTO findById(Long id) {
+        Cargo cargo = cargoRepository.findById(id).orElseThrow();
+        return new CargoDTO(cargo);
+    }
+
+    public CargoDTO create(CargoDTO cargoDTO) {
+        Cargo cargo = new Cargo(cargoDTO);
+        return new CargoDTO(cargoRepository.save(cargo));
+    }
+
+    public CargoDTO update(CargoDTO cargoDTO) {
+        Cargo cargo = cargoRepository.findById(cargoDTO.getId()).orElseThrow();
+        cargo.setCargoName(cargoDTO.getCargoName());
+        return new CargoDTO(cargoRepository.save(cargo));
+    }
+
+    public void delete(Long id) {
+        Cargo cargo = cargoRepository.findById(id).orElseThrow();
+        cargoRepository.delete(cargo);
+    }
 }

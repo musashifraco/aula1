@@ -59,4 +59,12 @@ public class PersonService {
 
         return new PersonDTO(personRepository.save(person));
     }
+
+    public void delete(Long id) {
+        Person person = personRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(
+                "Person not found with id " + id));
+        personRepository.delete(person);
+    }
 }
+
+

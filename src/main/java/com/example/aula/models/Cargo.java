@@ -29,6 +29,11 @@ public class Cargo implements Serializable {
 
     public Cargo() {}
 
+    public Cargo(CargoDTO cargoDTO) {
+        this.id = cargoDTO.getId();
+        this.cargoName = cargoDTO.getCargoName();
+    }
+
     public Long getId() {
         return id;
     }

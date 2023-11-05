@@ -35,4 +35,9 @@ public class PersonController {
     public PersonDTO update(@RequestBody PersonDTO personDTO) {
         return personService.update(personDTO);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable(value = "id") Long id) {
+        personService.delete(id);
+    }
 }

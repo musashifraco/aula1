@@ -15,6 +15,8 @@ public class CargoDTO {
 
     private List<String> persons;
 
+    public CargoDTO () {}
+
     public CargoDTO(Cargo entity) {
         id = entity.getId();
         cargoName = entity.getCargoName();
