@@ -22,8 +22,7 @@ public class PersonController {
     }
 
     @PostMapping
-    public PersonDTO create(@RequestBody PersonDTO personDTO) {
-        PersonDTO result = personService.create(personDTO);
-        return result;
+    public Person create(@RequestBody Person person) {
+        return personService.create(person);
     }
 }

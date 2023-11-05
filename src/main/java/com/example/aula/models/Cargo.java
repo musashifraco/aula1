@@ -24,11 +24,7 @@ public class Cargo implements Serializable {
     @Column(name = "cargo_name", nullable = false, length = 80)
     private String cargoName;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "person_cargo",
-            joinColumns = @JoinColumn(name = "cargo_id"),
-            inverseJoinColumns = @JoinColumn(name = "person_id"))
+    @ManyToMany(mappedBy = "cargos", fetch = FetchType.EAGER)
     private List<Person> persons = new ArrayList<>();
 
     public Cargo() {}

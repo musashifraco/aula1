@@ -7,5 +7,4 @@ INSERT INTO tb_cargo(cargo_name) VALUES ('ALUNO');
 INSERT INTO tb_cargo(cargo_name) VALUES ('PROGRAMADOR');
 
 INSERT INTO person_cargo(person_id, cargo_id) VALUES (1, 1);
-INSERT INTO person_cargo(person_id, cargo_id) VALUES (1, 2);
 

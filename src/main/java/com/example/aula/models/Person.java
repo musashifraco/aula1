@@ -28,7 +28,15 @@ public class Person implements Serializable {
     @Column(name = "person_bio", nullable = false, length = 80)
     private String personBio;
 
-    @ManyToMany(mappedBy = "persons", fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "person_cargo",
+            joinColumns = {
+                    @JoinColumn(name = "cargo_id", referencedColumnName = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "person_id", referencedColumnName = "id")
+            })
     private List<Cargo> cargos = new ArrayList<>();
 
 
