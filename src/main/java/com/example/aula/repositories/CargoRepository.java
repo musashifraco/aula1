@@ -11,4 +11,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CargoRepository extends JpaRepository<Cargo, Long> {
+    @Query(value = "SELECT * FROM tb_cargo WHERE tb_cargo.cargo_name = :nome", nativeQuery = true)
+    Cargo findCargoByString(@Param("nome") String nome);
 }

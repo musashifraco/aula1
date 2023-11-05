@@ -26,7 +26,11 @@ public class PersonService {
         return resultsList.stream().map(PersonDTO::new).toList();
     }
 
-    public Person create(Person person) {
-        return personRepository.save(person);
+    public PersonDTO create(PersonDTO personDTO) {
+        List<Cargo> cargos = personDTO.getCargos().stream().map(x -> cargoRepository.findCargoByString(x)).toList();
+
+        Person person = new Person(personDTO);
+        person.setCargos(cargos);
+        return new PersonDTO(personRepository.save(person));
     }
 }
