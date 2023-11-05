@@ -98,6 +98,7 @@ public class Person implements Serializable {
     }
 
     public void setCargos(List<Cargo> cargos) {
+        this.cargos.clear();
         this.cargos.addAll(cargos);
     }
 

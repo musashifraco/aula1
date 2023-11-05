@@ -15,6 +15,11 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
+    @GetMapping(value = "/{id}")
+    public PersonDTO findById(@PathVariable(value = "id") Long id) {
+        return personService.findById(id);
+    }
+
     @GetMapping
     public List<PersonDTO> findAll() {
         List<PersonDTO> result = personService.findAll();
@@ -24,5 +29,10 @@ public class PersonController {
     @PostMapping
     public PersonDTO create(@RequestBody PersonDTO personDTO) {
         return personService.create(personDTO);
+    }
+
+    @PutMapping
+    public PersonDTO update(@RequestBody PersonDTO personDTO) {
+        return personService.update(personDTO);
     }
 }
